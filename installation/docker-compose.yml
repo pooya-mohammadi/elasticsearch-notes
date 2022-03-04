@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+  elasticsearch:
+    image: elasticsearch:7.16.3
+    container_name: elasticsearch
+    hostname: elasticsearch
+#    restart: always
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+      - vm_max_map_count=262144
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - elk
+
+  kibana:
+    container_name: kibana
+    image: kibana:7.16.3
+    restart: always
+    hostname: kibana
+    environment:
+      SERVER_NAME: kibana
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+    networks:
+      - elk
+
+volumes:
+  elasticsearch-data-volume:
+    driver: local
+
+networks:
+  elk:
