@@ -272,5 +272,51 @@ GET test/_doc/1
 
 # Creating GeoPoints
 ```commandline
+# Creating a geo index
+PUT geo_index
 
+# Creating a geopoint mapping
+PUT geo_index/_mapping
+{
+  "properties": {
+    "id": {
+      "type": "keyword"
+    },
+    "timestamp": {
+      "type": "date"
+    },
+    "text": {
+      "type": "text"
+    },
+    "location": {
+      "type": "geo_point"
+    }
+  }
+}
+
+
+# Getting the mapping
+GET geo_index/_mapping
+
+
+# Adding a doc
+PUT geo_index/_doc/1
+{
+    "timestamp": "2022-02-12",
+    "text": "Geo-point as an object",
+    "location": {
+        "lat": 41.12,
+        "lon": -71.34
+    }
+}
+
+# get a doc
+GET geo_index/_doc/1
+```
+
+# Creating GeoShape
+```commandline
+Having a simple example is bit harder than I thought it would be!
+I implemented information from https://wsdot.wa.gov/mapsdata/geodatacatalog/default.htm#admin using a node code!
+Node code is in here: https://github.com/ereshzealous/node_playground/tree/master/elastic-geo-spatial
 ```

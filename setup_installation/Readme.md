@@ -14,4 +14,4 @@ curl localhost:9200
 Browse to localhost:5601
 
 ## Elastic Safe Architecture
-<img src='https://github.com/pooya-mohammadi/elasticsearch-notes/images/elastic-safe-architecture.png'>
+<img src='https://raw.githubusercontent.com/pooya-mohammadi/elasticsearch-notes/master/images/elastic-safe-architecture.png'>
