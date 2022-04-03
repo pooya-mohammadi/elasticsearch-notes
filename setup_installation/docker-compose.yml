@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   elasticsearch:
-    image: elasticsearch:7.16.3
+    image: elasticsearch:8.1.2
     container_name: elasticsearch
     hostname: elasticsearch
 #    restart: always
@@ -29,7 +29,7 @@ services:
 
   kibana:
     container_name: kibana
-    image: kibana:7.16.3
+    image: kibana:8.1.2
     restart: always
     hostname: kibana
     environment:
